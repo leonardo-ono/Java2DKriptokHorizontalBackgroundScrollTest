@@ -1,7 +1,6 @@
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Timer;
@@ -46,6 +45,7 @@ public class View extends JPanel {
     
     public void start() {
         dx = 0;
+        dy = 0;
         // pre-compute array
         array = new float[image.getHeight()][image.getWidth()];
         float modifier = 1f / (image.getHeight() / 4f + 150f); // This is just a variable that you can ajust to fit your needs. This value works for me for a 640x480 resolution.
@@ -53,7 +53,7 @@ public class View extends JPanel {
             float u = i - image.getWidth() / 2f;
             for (int j = 0; j < image.getHeight(); j++) {
                 if (u != 0) {
-                    array[j][i] = (float) (-(u / Math.abs(u)) * Math.pow(Math.abs(u), Math.abs(j - image.getHeight() / 2) * modifier));                        
+                    array[j][i] = (float) (-(u / Math.abs(u)) * Math.pow(Math.abs(u), Math.abs(j - image.getHeight() / 2) * modifier) - (-(u / Math.abs(u))));                        
                     // System.out.println("array[" + j + "][" + i + "] = " + array[j][i]);
                 }
             }
